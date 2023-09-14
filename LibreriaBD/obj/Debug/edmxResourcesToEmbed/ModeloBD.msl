@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LIBRERIAModelStoreContainer" CdmEntityContainer="LIBRERIAEntities">
+    <EntitySetMapping Name="LIBROS">
+      <EntityTypeMapping TypeName="LIBRERIAModel.LIBROS">
+        <MappingFragment StoreEntitySet="LIBROS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="autor" ColumnName="autor" />
+          <ScalarProperty Name="editorial" ColumnName="editorial" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="resumen" ColumnName="resumen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESENIAS">
+      <EntityTypeMapping TypeName="LIBRERIAModel.RESENIAS">
+        <MappingFragment StoreEntitySet="RESENIAS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resenia" ColumnName="resenia" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="LIBRERIAModel.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="documento" ColumnName="documento" />
+          <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ActualizarResenia" FunctionName="LIBRERIAModel.Store.sp_ActualizarResenia" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarResenia" FunctionName="LIBRERIAModel.Store.sp_EliminarResenia" />
+    <FunctionImportMapping FunctionImportName="sp_Libros" FunctionName="LIBRERIAModel.Store.sp_Libros" />
+    <FunctionImportMapping FunctionImportName="sp_Resenias" FunctionName="LIBRERIAModel.Store.sp_Resenias" />
+    <FunctionImportMapping FunctionImportName="sp_Usuarios" FunctionName="LIBRERIAModel.Store.sp_Usuarios" />
+  </EntityContainerMapping>
+</Mapping>

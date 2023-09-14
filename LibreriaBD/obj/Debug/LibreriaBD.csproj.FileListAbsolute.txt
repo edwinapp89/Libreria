@@ -1,0 +1,12 @@
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\LibreriaBD.dll.config
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\LibreriaBD.dll
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\LibreriaBD.pdb
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\EntityFramework.dll
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\EntityFramework.xml
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\obj\Debug\LibreriaBD.csproj.AssemblyReference.cache
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\obj\Debug\LibreriaBD.csproj.CoreCompileInputs.cache
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\obj\Debug\LibreriaBD.csproj.CopyComplete
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\obj\Debug\LibreriaBD.dll
+C:\Users\RUWIN\Documents\PROGRAMACION\C#\NOVATO\Libreria\Libreria\LibreriaBD\obj\Debug\LibreriaBD.pdb

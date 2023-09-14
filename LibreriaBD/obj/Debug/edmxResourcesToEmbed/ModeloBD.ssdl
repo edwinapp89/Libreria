@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LIBRERIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LIBROS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="autor" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="editorial" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="categoria" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="resumen" Type="varchar" MaxLength="2000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESENIAS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resenia" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="comentario" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="calificacion" Type="int" Nullable="false" />
+    <Property Name="idLibro" Type="int" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombreCompleto" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="clave" Type="varchar" MaxLength="8" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__RESENIAS__idLibr__571DF1D5">
+    <End Role="LIBROS" Type="Self.LIBROS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RESENIAS" Type="Self.RESENIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LIBROS">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RESENIAS">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESENIAS__idUsua__5812160E">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RESENIAS" Type="Self.RESENIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RESENIAS">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_ActualizarResenia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="resenia" Type="varchar" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+    <Parameter Name="calificacion" Type="int" Mode="In" />
+    <Parameter Name="idLibro" Type="int" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_EliminarResenia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Libros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
+    <Parameter Name="autor" Type="varchar" Mode="In" />
+    <Parameter Name="editorial" Type="varchar" Mode="In" />
+    <Parameter Name="categoria" Type="varchar" Mode="In" />
+    <Parameter Name="resumen" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Resenias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="resenia" Type="varchar" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+    <Parameter Name="calificacion" Type="int" Mode="In" />
+    <Parameter Name="idLibro" Type="int" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documento" Type="varchar" Mode="In" />
+    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="clave" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="LIBRERIAModelStoreContainer">
+    <EntitySet Name="LIBROS" EntityType="Self.LIBROS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESENIAS" EntityType="Self.RESENIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__RESENIAS__idLibr__571DF1D5" Association="Self.FK__RESENIAS__idLibr__571DF1D5">
+      <End Role="LIBROS" EntitySet="LIBROS" />
+      <End Role="RESENIAS" EntitySet="RESENIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESENIAS__idUsua__5812160E" Association="Self.FK__RESENIAS__idUsua__5812160E">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="RESENIAS" EntitySet="RESENIAS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

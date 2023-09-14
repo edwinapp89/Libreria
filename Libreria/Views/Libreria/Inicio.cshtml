@@ -1,0 +1,76 @@
+﻿@model IEnumerable<LibreriaBD.LIBROS>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/DataTable/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTable/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTable/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+
+<h2>Inicio</h2>
+<div class="contenedor">
+    <div class="col-sm-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Libreria</h4>
+            </div>
+            <div class="panel-body">
+                <a href="@Url.Action("CrearLibro", "Libreria")" class="btn btn-success"> Crear Nuevo</a>
+                <hr />
+
+                <!-- Tabla de libros-->
+
+                <table class="table" id="DtInicio">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Autor</th>
+                            <th>Titulo</th>
+                            <th>Editorial</th>
+                            <th>Categoria</th>
+                            <th>Resumen</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (LibreriaBD.LIBROS item in Model)
+                            {
+                                <tr>
+                                    <td>@item.id</td>
+                                    <td>@item.autor</td>
+                                    <td>@item.titulo</td>
+                                    <td>@item.editorial</td>
+                                    <td>@item.categoria</td>
+                                    <td>@item.resumen</td>
+                                    <td>
+                                        <a href="@Url.Action("Resenia", "Libreria", new { id = @item.id })" class="btn btn-success btn-sm">Reseñas</a>
+                                    </td>
+
+                                </tr>
+                            }
+
+                        }
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Content/DataTable/js/jquery-3.7.0.min.js"></script>
+<script src="~/Content/DataTable/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/DataTable/js/dataTables.responsive.min.js"></script>
+<script src="~/Content/DataTable/js/datatables.min.js"></script>
+<script src="~/Content/DataTable/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/Content/DataTable/js/responsive.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/CodigoInicio.js"></script>

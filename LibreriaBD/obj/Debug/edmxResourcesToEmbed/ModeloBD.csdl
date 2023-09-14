@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LIBRERIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LIBROS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="autor" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resumen" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RESENIAS" Relationship="Self.FK__RESENIAS__idLibr__571DF1D5" FromRole="LIBROS" ToRole="RESENIAS" />
+  </EntityType>
+  <EntityType Name="RESENIAS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="resenia" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calificacion" Type="Int32" Nullable="false" />
+    <Property Name="idLibro" Type="Int32" Nullable="false" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LIBROS" Relationship="Self.FK__RESENIAS__idLibr__571DF1D5" FromRole="RESENIAS" ToRole="LIBROS" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__RESENIAS__idUsua__5812160E" FromRole="RESENIAS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombreCompleto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="clave" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RESENIAS" Relationship="Self.FK__RESENIAS__idUsua__5812160E" FromRole="USUARIOS" ToRole="RESENIAS" />
+  </EntityType>
+  <Association Name="FK__RESENIAS__idLibr__571DF1D5">
+    <End Role="LIBROS" Type="Self.LIBROS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RESENIAS" Type="Self.RESENIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LIBROS">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RESENIAS">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESENIAS__idUsua__5812160E">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RESENIAS" Type="Self.RESENIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RESENIAS">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LIBRERIAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LIBROS" EntityType="Self.LIBROS" />
+    <EntitySet Name="RESENIAS" EntityType="Self.RESENIAS" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <AssociationSet Name="FK__RESENIAS__idLibr__571DF1D5" Association="Self.FK__RESENIAS__idLibr__571DF1D5">
+      <End Role="LIBROS" EntitySet="LIBROS" />
+      <End Role="RESENIAS" EntitySet="RESENIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESENIAS__idUsua__5812160E" Association="Self.FK__RESENIAS__idUsua__5812160E">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="RESENIAS" EntitySet="RESENIAS" />
+    </AssociationSet>
+    <FunctionImport Name="sp_ActualizarResenia">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="resenia" Mode="In" Type="String" />
+      <Parameter Name="comentario" Mode="In" Type="String" />
+      <Parameter Name="calificacion" Mode="In" Type="Int32" />
+      <Parameter Name="idLibro" Mode="In" Type="Int32" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarResenia">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Libros">
+      <Parameter Name="titulo" Mode="In" Type="String" />
+      <Parameter Name="autor" Mode="In" Type="String" />
+      <Parameter Name="editorial" Mode="In" Type="String" />
+      <Parameter Name="categoria" Mode="In" Type="String" />
+      <Parameter Name="resumen" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Resenias">
+      <Parameter Name="resenia" Mode="In" Type="String" />
+      <Parameter Name="comentario" Mode="In" Type="String" />
+      <Parameter Name="calificacion" Mode="In" Type="Int32" />
+      <Parameter Name="idLibro" Mode="In" Type="Int32" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Usuarios">
+      <Parameter Name="documento" Mode="In" Type="String" />
+      <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="clave" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
