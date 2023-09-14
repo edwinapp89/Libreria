@@ -42,26 +42,28 @@ namespace Libreria.Controllers
             return View(resenia);
         }
 
-        public ActionResult ActualizarResenia(LibreriaBD.RESENIAS resenia)
+        public ActionResult ActualizarResenia( LibreriaBD.RESENIAS objResenia)
         {
-            LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
-            if (ModelState.IsValid)
+            using (var contexto = new LIBRERIAEntities())
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    //actualizar con entityframework
-                    ContextoBD.Entry(resenia).State = System.Data.Entity.EntityState.Modified;
-                    ContextoBD.SaveChanges();
-                    return RedirectToAction("Resenia", "Libreria");
-                }
-                catch (Exception ex1)
-                {
-                    // Manejar errores de actualización, si es necesario
-                    ModelState.AddModelError("", "Error al actualizar la reseña: " + ex1.Message);
+                    try
+                    {
+                        //actualizar con entityframework
+                        contexto.Entry(objResenia).State = System.Data.Entity.EntityState.Modified;
+                        contexto.SaveChanges();
+                        return RedirectToAction("Resenia", "Libreria");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar errores de actualización, si es necesario
+                        ModelState.AddModelError("", "Error al actualizar la reseña: " + ex.Message);
+                    }
                 }
             }
-            Console.WriteLine(resenia);
-            return View("EditarResenia",resenia);
+           
+            return View("EditarResenia", objResenia);
         }
 
         // GET: Libreria/Create

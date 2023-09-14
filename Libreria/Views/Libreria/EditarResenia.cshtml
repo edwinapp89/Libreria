@@ -5,12 +5,12 @@
 }
 
 <h2>EditarResenia</h2>
-<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+
 
 @using (Html.BeginForm("ActualizarResenia","Libreria",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>RESENIAS</h4>
         <hr />
@@ -64,10 +64,10 @@
         </div>
     </div>
 }
-<div>
-    <a class="btn btn-warning" href="@Url.Action("Resenia","Libreria")">Volver</a>
-</div>
 
+<div>
+    <a class="btn btn-warning" href="@Url.Action("Resenias","Libreria")">Volver</a>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
