@@ -66,70 +66,23 @@ namespace Libreria.Controllers
             return View("EditarResenia", objResenia);
         }
 
-        // GET: Libreria/Create
-        public ActionResult Create()
+     
+        public ActionResult EliminarResenia(int id)
         {
-            return View();
+            using (var contexto = new LIBRERIAEntities())
+            { 
+               var eliminarR = contexto.RESENIAS.FirstOrDefault(p => p.id == id);
+                if(eliminarR == null)
+                {
+                    return View();
+                }
+                contexto.RESENIAS.Remove(eliminarR);
+                contexto.SaveChanges();
+                return RedirectToAction("Resenia","Libreria");
+            }
+              
         }
 
-        // POST: Libreria/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Libreria/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Libreria/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Libreria/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Libreria/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }
