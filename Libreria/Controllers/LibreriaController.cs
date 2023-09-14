@@ -54,12 +54,13 @@ namespace Libreria.Controllers
                     ContextoBD.SaveChanges();
                     return RedirectToAction("Resenia", "Libreria");
                 }
-                catch (Exception ex)
+                catch (Exception ex1)
                 {
                     // Manejar errores de actualización, si es necesario
-                    ModelState.AddModelError("", "Error al actualizar la reseña: " + ex.Message);
+                    ModelState.AddModelError("", "Error al actualizar la reseña: " + ex1.Message);
                 }
             }
+            Console.WriteLine(resenia);
             return View("EditarResenia",resenia);
         }
 
