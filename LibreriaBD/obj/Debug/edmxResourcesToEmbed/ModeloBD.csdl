@@ -33,7 +33,7 @@
     <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nombreCompleto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="clave" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="RESENIAS" Relationship="Self.FK__RESENIAS__idUsua__5812160E" FromRole="USUARIOS" ToRole="RESENIAS" />
   </EntityType>
   <Association Name="FK__RESENIAS__idLibr__571DF1D5">

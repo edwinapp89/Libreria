@@ -35,9 +35,9 @@
           <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombreCompleto" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="clave" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__RESENIAS__idLibr__571DF1D5">
+        <Association Name="FK__RESENIAS__idLibr__6477ECF3">
           <End Role="LIBROS" Type="Self.LIBROS" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -51,7 +51,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RESENIAS__idUsua__5812160E">
+        <Association Name="FK__RESENIAS__idUsua__656C112C">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -106,11 +106,11 @@
           <EntitySet Name="LIBROS" EntityType="Self.LIBROS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESENIAS" EntityType="Self.RESENIAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__RESENIAS__idLibr__571DF1D5" Association="Self.FK__RESENIAS__idLibr__571DF1D5">
+          <AssociationSet Name="FK__RESENIAS__idLibr__6477ECF3" Association="Self.FK__RESENIAS__idLibr__6477ECF3">
             <End Role="LIBROS" EntitySet="LIBROS" />
             <End Role="RESENIAS" EntitySet="RESENIAS" />
           </AssociationSet>
-          <AssociationSet Name="FK__RESENIAS__idUsua__5812160E" Association="Self.FK__RESENIAS__idUsua__5812160E">
+          <AssociationSet Name="FK__RESENIAS__idUsua__656C112C" Association="Self.FK__RESENIAS__idUsua__656C112C">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="RESENIAS" EntitySet="RESENIAS" />
           </AssociationSet>
@@ -152,7 +152,7 @@
           <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombreCompleto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="clave" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="RESENIAS" Relationship="Self.FK__RESENIAS__idUsua__5812160E" FromRole="USUARIOS" ToRole="RESENIAS" />
         </EntityType>
         <Association Name="FK__RESENIAS__idLibr__571DF1D5">
