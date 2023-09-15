@@ -31,6 +31,7 @@ namespace Libreria.Controllers
         {
             bool registrado;
             string mensaje;
+            //si las claves son iguales convertir clave en sha256
             if(objUsuario.clave == objUsuario.confirmarClave)
             {
                 //se convierte la clave registrada para ser almacenada
@@ -45,12 +46,22 @@ namespace Libreria.Controllers
 
             using ( var contextoBD = new LIBRERIAEntities())
             {
-                // Declarar parámetros de salida
+                // Declarar parámetros de salida ya que el procedimiento usa
+                // las variables para generar 1 o 0 si encuenta o no el usuario
                 var registradoParam = new ObjectParameter("registrado", typeof(bool));
                 var mensajeParam = new ObjectParameter("mensaje", typeof(string));
 
                 if (ModelState.IsValid)
                 {
+                    bool usuarioExistente = contextoBD.USUARIOS.Any(d => d.documento == objUsuario.documento);
+
+                    if (usuarioExistente)
+                    {
+                        ViewData["Mensaje2"] = "El usuario con este documento ya está registrado.";
+                 
+                        return View();
+                    }
+
                     contextoBD.sp_Usuarios(objUsuario.documento, objUsuario.nombreCompleto, objUsuario.email,  objUsuario.clave,registradoParam,mensajeParam);
 
                     // Obtener los valores de los parámetros de salida

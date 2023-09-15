@@ -1,4 +1,5 @@
-﻿using LibreriaBD;
+﻿using Libreria.Permisos;
+using LibreriaBD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,9 @@ using System.Web.Mvc;
 
 namespace Libreria.Controllers
 {
+    // se agrega referencia a permisos apra que permita el acceso si se inicia sesion
+    //antes de que se ejecute algun controlador que valide la sesion
+    [ValidarSesion]
     public class LibreriaController : Controller
     {
         // GET: Libreria
@@ -67,22 +71,28 @@ namespace Libreria.Controllers
             return View("EditarResenia", objResenia);
         }
 
-     
+
         public ActionResult EliminarResenia(int id)
         {
             using (var contexto = new LIBRERIAEntities())
-            { 
-               var eliminarR = contexto.RESENIAS.FirstOrDefault(p => p.id == id);
-                if(eliminarR == null)
+            {
+                var eliminarR = contexto.RESENIAS.FirstOrDefault(p => p.id == id);
+                if (eliminarR == null)
                 {
                     return View();
                 }
                 contexto.RESENIAS.Remove(eliminarR);
                 contexto.SaveChanges();
-                return RedirectToAction("Resenia","Libreria");
+                return RedirectToAction("Resenia", "Libreria");
             }
-              
+
         }
+            public ActionResult CerrarSesion()
+            {
+                Session["usuario"] = null;
+                return RedirectToAction("Login","Acceso");
+            }
+
 
        
     }

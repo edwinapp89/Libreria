@@ -11,7 +11,8 @@ namespace LibreriaBD
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class USUARIOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,22 @@ namespace LibreriaBD
         }
     
         public int id { get; set; }
+        [Required(ErrorMessage = "El campo Documento es obligatorio.")]
         public string documento { get; set; }
+
+        [Required(ErrorMessage = "El campo Nombre Completo es obligatorio.")]
         public string nombreCompleto { get; set; }
+
+        [Required(ErrorMessage = "El campo Email es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El campo Email no tiene un formato de correo electrónico válido.")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "El campo Clave es obligatorio.")]
+        [DataType(DataType.Password)]
         public string clave { get; set; }
 
+        [Required(ErrorMessage = "El campo Confirmar Clave es obligatorio.")]
+        [DataType(DataType.Password)]
         public string confirmarClave { get; set; }  
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
