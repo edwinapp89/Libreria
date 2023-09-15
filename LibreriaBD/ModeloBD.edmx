@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LIBRERIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LIBRERIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LIBROS">
           <Key>
             <PropertyRef Name="id" />
@@ -95,6 +95,12 @@
           <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="clave" Type="varchar" Mode="In" />
+          <Parameter Name="registrado" Type="bit" Mode="InOut" />
+          <Parameter Name="mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_ValidarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="clave" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="LIBRERIAModelStoreContainer">
           <EntitySet Name="LIBROS" EntityType="Self.LIBROS" Schema="dbo" store:Type="Tables" />
@@ -109,8 +115,7 @@
             <End Role="RESENIAS" EntitySet="RESENIAS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LIBRERIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -199,7 +204,7 @@
             <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarResenia">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Libros">
             <Parameter Name="titulo" Mode="In" Type="String" />
@@ -218,6 +223,12 @@
           <FunctionImport Name="sp_Usuarios">
             <Parameter Name="documento" Mode="In" Type="String" />
             <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="clave" Mode="In" Type="String" />
+            <Parameter Name="registrado" Mode="InOut" Type="Boolean" />
+            <Parameter Name="mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ValidarUsuarios" ReturnType="Collection(Int32)">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="clave" Mode="In" Type="String" />
           </FunctionImport>
@@ -268,6 +279,7 @@
           <FunctionImportMapping FunctionImportName="sp_Libros" FunctionName="LIBRERIAModel.Store.sp_Libros" />
           <FunctionImportMapping FunctionImportName="sp_Resenias" FunctionName="LIBRERIAModel.Store.sp_Resenias" />
           <FunctionImportMapping FunctionImportName="sp_Usuarios" FunctionName="LIBRERIAModel.Store.sp_Usuarios" />
+          <FunctionImportMapping FunctionImportName="sp_ValidarUsuarios" FunctionName="LIBRERIAModel.Store.sp_ValidarUsuarios" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

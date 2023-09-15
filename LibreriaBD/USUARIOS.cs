@@ -25,6 +25,7 @@ namespace LibreriaBD
         public string nombreCompleto { get; set; }
         public string email { get; set; }
         public string clave { get; set; }
+        public string confirmarClave { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RESENIAS> RESENIAS { get; set; }

@@ -42,6 +42,7 @@ namespace Libreria.Controllers
             return View(resenia);
         }
 
+        //los parametros no deben tener el mismo nombre del modelo
         public ActionResult ActualizarResenia( LibreriaBD.RESENIAS objResenia)
         {
             using (var contexto = new LIBRERIAEntities())

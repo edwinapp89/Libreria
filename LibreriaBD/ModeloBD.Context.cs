@@ -119,7 +119,7 @@ namespace LibreriaBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Resenias", reseniaParameter, comentarioParameter, calificacionParameter, idLibroParameter, idUsuarioParameter);
         }
     
-        public virtual int sp_Usuarios(string documento, string nombreCompleto, string email, string clave)
+        public virtual int sp_Usuarios(string documento, string nombreCompleto, string email, string clave, ObjectParameter registrado, ObjectParameter mensaje)
         {
             var documentoParameter = documento != null ?
                 new ObjectParameter("documento", documento) :
@@ -137,7 +137,20 @@ namespace LibreriaBD
                 new ObjectParameter("clave", clave) :
                 new ObjectParameter("clave", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Usuarios", documentoParameter, nombreCompletoParameter, emailParameter, claveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Usuarios", documentoParameter, nombreCompletoParameter, emailParameter, claveParameter, registrado, mensaje);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_ValidarUsuarios(string email, string clave)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var claveParameter = clave != null ?
+                new ObjectParameter("clave", clave) :
+                new ObjectParameter("clave", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_ValidarUsuarios", emailParameter, claveParameter);
         }
     }
 }

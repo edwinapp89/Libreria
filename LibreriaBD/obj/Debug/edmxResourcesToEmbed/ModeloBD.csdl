@@ -106,6 +106,12 @@
       <Parameter Name="nombreCompleto" Mode="In" Type="String" />
       <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="clave" Mode="In" Type="String" />
+      <Parameter Name="registrado" Mode="InOut" Type="Boolean" />
+      <Parameter Name="mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ValidarUsuarios" ReturnType="Collection(Int32)">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="clave" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
 </Schema>

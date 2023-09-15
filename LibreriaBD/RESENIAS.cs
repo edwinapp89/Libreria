@@ -11,13 +11,10 @@ namespace LibreriaBD
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class RESENIAS
     {
         public int id { get; set; }
-
-        [StringLength(1000)]
         public string resenia { get; set; }
         public string comentario { get; set; }
         public int calificacion { get; set; }

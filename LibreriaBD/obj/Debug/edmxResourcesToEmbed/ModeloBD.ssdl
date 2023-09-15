@@ -90,6 +90,12 @@
     <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
     <Parameter Name="email" Type="varchar" Mode="In" />
     <Parameter Name="clave" Type="varchar" Mode="In" />
+    <Parameter Name="registrado" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ValidarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="clave" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="LIBRERIAModelStoreContainer">
     <EntitySet Name="LIBROS" EntityType="Self.LIBROS" Schema="dbo" store:Type="Tables" />

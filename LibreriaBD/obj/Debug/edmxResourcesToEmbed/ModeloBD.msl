@@ -41,5 +41,6 @@
     <FunctionImportMapping FunctionImportName="sp_Libros" FunctionName="LIBRERIAModel.Store.sp_Libros" />
     <FunctionImportMapping FunctionImportName="sp_Resenias" FunctionName="LIBRERIAModel.Store.sp_Resenias" />
     <FunctionImportMapping FunctionImportName="sp_Usuarios" FunctionName="LIBRERIAModel.Store.sp_Usuarios" />
+    <FunctionImportMapping FunctionImportName="sp_ValidarUsuarios" FunctionName="LIBRERIAModel.Store.sp_ValidarUsuarios" />
   </EntityContainerMapping>
 </Mapping>
