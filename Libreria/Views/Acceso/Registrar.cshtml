@@ -53,20 +53,25 @@
                             </div>
                             <input type="text" name="email" class="form-control input_user" value="" placeholder="email">
                         </div>
-                      
+
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" name="clave" class="form-control input_pass" value="" placeholder="Contraseña">
+
                         </div>
+
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" name="confirmarClave" class="form-control input_pass" value="" placeholder="Confirmar Contraseña">
                         </div>
-
+                        @if (ViewData["Mensaje"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert" id="mensajeL">@ViewData["Mensaje"]</div>
+                        }
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <button type="submit" name="button" class="btn login_btn">Registrarse</button>
                         </div>
@@ -92,6 +97,10 @@
     $(document).ready(function () {
         setTimeout(function () {
             $("#mensaje").fadeOut("slow");
+        }, 5000); // 5000 milisegundos = 5 segundos
+
+        setTimeout(function () {
+            $("#mensajeL").fadeOut("slow");
         }, 5000); // 5000 milisegundos = 5 segundos
     });
 </script>
