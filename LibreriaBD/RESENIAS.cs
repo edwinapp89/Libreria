@@ -11,14 +11,23 @@ namespace LibreriaBD
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class RESENIAS
     {
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El campo Resenia es obligatorio.")]
+        [StringLength(1000, ErrorMessage = "El campo Resenia no debe tener más de 1000 caracteres.")]
         public string resenia { get; set; }
+        [Required(ErrorMessage = "El campo Comentario es obligatorio.")]
+        [StringLength(500, ErrorMessage = "El campo comentario no debe tener más de 500 caracteres.")]
         public string comentario { get; set; }
+        [Required(ErrorMessage = "El campo Calificacion es obligatorio.")]
         public int calificacion { get; set; }
+        [Required(ErrorMessage = "La referencia de libro es obligatorio.")]
         public int idLibro { get; set; }
+        [Required(ErrorMessage = "El usuario es obligatorio es obligatorio.")]
         public int idUsuario { get; set; }
     
         public virtual LIBROS LIBROS { get; set; }

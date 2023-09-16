@@ -1,22 +1,19 @@
 ﻿@model LibreriaBD.RESENIAS
 
 @{
-    ViewBag.Title = "EditarResenia";
+    ViewBag.Title = "CrearResenia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditarResenia</h2>
-
-
-@using (Html.BeginForm("ActualizarResenia","Libreria",FormMethod.Post))
+<h2>CrearResenia</h2>
+@using (Html.BeginForm("CrearResenia", "Libreria", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>RESENIAS</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.resenia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,16 +56,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Actualizar" class="btn btn-primary" />
+                <input type="submit" value="Registrar" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    <a class="btn btn-warning" href="@Url.Action("Resenia","Libreria")">Volver</a>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<a class="btn btn-warning " href="@Url.Action("Resenia", "Libreria")">Volver</a>

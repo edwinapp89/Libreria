@@ -35,6 +35,25 @@ namespace Libreria.Controllers
             return View(ListaResenias);
         }
 
+        [HttpGet]
+        public ActionResult CrearResenia()
+        {
+            return View();
+        }
+        [HttpPost]
+        //OBJETO QUE SE RECIBE DIFERENTE A LOS VALORES
+        public ActionResult CrearResenia(LibreriaBD.RESENIAS objResenia)
+        {
+            using (var contextoBD = new LIBRERIAEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    contextoBD.sp_Resenias(objResenia.resenia, objResenia.comentario, objResenia.calificacion, objResenia.idLibro, objResenia.idUsuario);
+                    return RedirectToAction("Resenia", "Libreria");
+                }
+            }
+            return View();
+        }
        public ActionResult EditarResenia(int id)
         {
             LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
