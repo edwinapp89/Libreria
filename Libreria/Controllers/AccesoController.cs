@@ -78,8 +78,7 @@ namespace Libreria.Controllers
 
                 }
                 
-                    return View();
-                
+                    return View();       
 
               
               
@@ -103,40 +102,27 @@ namespace Libreria.Controllers
 
         [HttpPost]
         public ActionResult Login(LibreriaBD.USUARIOS objUsuario)
-        {
-            // se convierte la clave
-
-
-            objUsuario.clave = ConvertirClave(objUsuario.clave);
+        {          
             using (var contextoBD = new LIBRERIAEntities())
             {
-                if (ModelState.IsValid)
-                {
+                
+                    objUsuario.clave = ConvertirClave(objUsuario.clave);
                     int resultado = Convert.ToInt32(contextoBD.sp_ValidarUsuarios(objUsuario.email, objUsuario.clave).FirstOrDefault());
+
                     objUsuario.id = resultado;
+                    if (resultado != 0)
+                    {
 
-
-
-                }
+                        //crear sesion
+                        Session["usuario"] = objUsuario;
+                        return RedirectToAction("Inicio", "Libreria");
+                    }
+                   
+                   
+                
+                ViewData["Mensaje"] = "Usuario no encontrado";
+                return View();
             }
-                if (objUsuario.id != 0)
-                {
-                objUsuario.clave = ConvertirClave(objUsuario.clave);
-
-                //crear sesion
-                    Session["usuario"] = objUsuario;
-                    return RedirectToAction("Inicio", "Libreria");
-                }
-                else
-                {
-                    // Usuario no encontrado, muestra el mensaje
-                    ViewData["Mensaje"] = "Usuario no encontrado";
-                    return View();
-                }
-
-            
-           
-           
         }
 
        
