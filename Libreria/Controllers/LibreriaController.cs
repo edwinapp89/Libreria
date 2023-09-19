@@ -60,6 +60,7 @@ namespace Libreria.Controllers
             List<LibreriaBD.Vista_ReseniaGeneral> ListaResenias;
             using (var ContextoBD = new LIBRERIAEntities())
             {
+                //selecciona todos los registros de las reseñas de un libro en especifico
                 ListaResenias = ContextoBD.Vista_ReseniaGeneral.Where(l => l.idLibro == id).ToList();
             }
             return View(ListaResenias);
@@ -132,17 +133,47 @@ namespace Libreria.Controllers
                 }
                 contexto.RESENIAS.Remove(eliminarR);
                 contexto.SaveChanges();
-                return RedirectToAction("Resenia", "Libreria");
+                return RedirectToAction("ReseniaAll", "Libreria");
             }
 
         }
-            public ActionResult CerrarSesion()
+        public ActionResult CerrarSesion()
             {
                 Session["usuario"] = null;
                 return RedirectToAction("Login","Acceso");
             }
 
+        public ActionResult obtenerLibros()
+        {
+            LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
+            List<LibreriaBD.LIBROS> ListaLibros;
+            ListaLibros = ContextoBD.LIBROS.ToList();
 
-       
+            var consulta = (from LIBROS in ListaLibros
+                            select new
+                            {
+                                id = LIBROS.id,
+                                titulo = LIBROS.titulo
+                            }).ToList();
+            return Json(consulta, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult obtenerUsuarios()
+        {
+            LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
+            List<LibreriaBD.USUARIOS> ListaUsuarios;
+            ListaUsuarios = ContextoBD.USUARIOS.ToList();
+
+            var consulta = (from USUARIOS in ListaUsuarios
+                            select new
+                            {
+                                id = USUARIOS.id,
+                                nombre = USUARIOS.nombreCompleto
+                            }).ToList();
+            return Json(consulta, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

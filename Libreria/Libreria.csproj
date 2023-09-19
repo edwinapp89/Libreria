@@ -282,6 +282,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTable\js\Spanish.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\CodigoCrearR.js" />
+    <Content Include="Scripts\codigoEditarR.js" />
     <Content Include="Scripts\CodigoInicio.js" />
     <Content Include="Scripts\codigoResenia.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

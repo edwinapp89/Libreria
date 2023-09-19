@@ -4,7 +4,7 @@
     ViewBag.Title = "CrearResenia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 <h2>CrearResenia</h2>
 @using (Html.BeginForm("CrearResenia", "Libreria", FormMethod.Post))
 {
@@ -33,7 +33,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.calificacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.calificacion, new { htmlAttributes = new { @class = "form-control" } })
+                <!--select con DropDownListFor, se vincula el modelo de bd con el valor de la opcion escogida selecr
+                    seleclist crea una lista de opciones-->
+                @Html.DropDownListFor(model => model.calificacion, new SelectList(new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "1", Value = "1" },
+                    new SelectListItem { Text = "2", Value = "2" },
+                    new SelectListItem { Text = "3", Value = "3" },
+                    new SelectListItem { Text = "4", Value = "4" },
+                    new SelectListItem { Text = "5", Value = "5" }
+                }, "Value", "Text"), "Seleccionar Calificación", new { @class = "form-control", @id="calificacion" })
+
                 @Html.ValidationMessageFor(model => model.calificacion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,15 +51,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.idLibro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.idLibro, new { htmlAttributes = new { @class = "form-control" } })
+              
+                <select id="idLibro" name="idLibro" class="form-control" data-url="@Url.Action("obtenerLibros","Libreria")">
+                    <option value="0">Seleccionar Libro</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.idLibro, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.idUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idUsuario, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10">            
+
+                <select id="idUsuario" name="idUsuario" class="form-control" data-url="@Url.Action("obtenerUsuarios","Libreria")">
+                    <option value="0">Seleccionar Usuario</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.idUsuario, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,3 +78,5 @@
     </div>
 }
 <a class="btn btn-warning " href="@Url.Action("Inicio", "Libreria")">Volver</a>
+
+<script type="text/javascript" src="~/Scripts/CodigoCrearR.js"></script>
