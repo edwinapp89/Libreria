@@ -25,12 +25,42 @@ namespace Libreria.Controllers
 
         }
 
-        public ActionResult Resenia()
+        [HttpGet]
+        public ActionResult CrearLibro()
+        {
+            return View();
+        }
+        [HttpPost]
+        //OBJETO QUE SE RECIBE DIFERENTE A LOS VALORES
+        public ActionResult CrearLibro(LibreriaBD.LIBROS objLibro)
+        {
+            using (var contextoBD = new LIBRERIAEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    contextoBD.sp_Libros(objLibro.titulo,objLibro.autor,objLibro.editorial,objLibro.categoria,objLibro.resumen);
+                    return RedirectToAction("Inicio", "Libreria");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult ReseniaAll()
         {
             List<LibreriaBD.RESENIAS> ListaResenias;
             using (var ContextoBD = new LIBRERIAEntities())
             {
                 ListaResenias = ContextoBD.RESENIAS.ToList();
+            }
+            return View(ListaResenias);
+        }
+
+        public ActionResult Resenia(int id)
+        {
+            List<LibreriaBD.Vista_ReseniaGeneral> ListaResenias;
+            using (var ContextoBD = new LIBRERIAEntities())
+            {
+                ListaResenias = ContextoBD.Vista_ReseniaGeneral.Where(l => l.idLibro == id).ToList();
             }
             return View(ListaResenias);
         }
@@ -49,7 +79,7 @@ namespace Libreria.Controllers
                 if (ModelState.IsValid)
                 {
                     contextoBD.sp_Resenias(objResenia.resenia, objResenia.comentario, objResenia.calificacion, objResenia.idLibro, objResenia.idUsuario);
-                    return RedirectToAction("Resenia", "Libreria");
+                    return RedirectToAction("ReseniaAll", "Libreria");
                 }
             }
             return View();

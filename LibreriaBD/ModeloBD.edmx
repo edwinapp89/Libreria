@@ -37,6 +37,24 @@
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'LIBRERIA.dbo.Vista_ReseniaGeneral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Vista_ReseniaGeneral">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="resenia" />
+            <PropertyRef Name="comentario" />
+            <PropertyRef Name="calificacion" />
+            <PropertyRef Name="idLibro" />
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="resenia" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="calificacion" Type="int" Nullable="false" />
+          <Property Name="idLibro" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK__RESENIAS__idLibr__6477ECF3">
           <End Role="LIBROS" Type="Self.LIBROS" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -106,6 +124,16 @@
           <EntitySet Name="LIBROS" EntityType="Self.LIBROS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESENIAS" EntityType="Self.RESENIAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vista_ReseniaGeneral" EntityType="Self.Vista_ReseniaGeneral" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vista_ReseniaGeneral].[id] AS [id], 
+    [Vista_ReseniaGeneral].[resenia] AS [resenia], 
+    [Vista_ReseniaGeneral].[comentario] AS [comentario], 
+    [Vista_ReseniaGeneral].[calificacion] AS [calificacion], 
+    [Vista_ReseniaGeneral].[idLibro] AS [idLibro], 
+    [Vista_ReseniaGeneral].[idUsuario] AS [idUsuario]
+    FROM [dbo].[Vista_ReseniaGeneral] AS [Vista_ReseniaGeneral]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__RESENIAS__idLibr__6477ECF3" Association="Self.FK__RESENIAS__idLibr__6477ECF3">
             <End Role="LIBROS" EntitySet="LIBROS" />
             <End Role="RESENIAS" EntitySet="RESENIAS" />
@@ -232,7 +260,24 @@
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="clave" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Vista_ReseniaGeneral" EntityType="LIBRERIAModel.Vista_ReseniaGeneral" />
         </EntityContainer>
+        <EntityType Name="Vista_ReseniaGeneral">
+          <Key>
+            <PropertyRef Name="resenia" />
+            <PropertyRef Name="comentario" />
+            <PropertyRef Name="calificacion" />
+            <PropertyRef Name="idLibro" />
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="resenia" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="comentario" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="calificacion" Type="Int32" Nullable="false" />
+          <Property Name="idLibro" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -280,6 +325,18 @@
           <FunctionImportMapping FunctionImportName="sp_Resenias" FunctionName="LIBRERIAModel.Store.sp_Resenias" />
           <FunctionImportMapping FunctionImportName="sp_Usuarios" FunctionName="LIBRERIAModel.Store.sp_Usuarios" />
           <FunctionImportMapping FunctionImportName="sp_ValidarUsuarios" FunctionName="LIBRERIAModel.Store.sp_ValidarUsuarios" />
+          <EntitySetMapping Name="Vista_ReseniaGeneral">
+            <EntityTypeMapping TypeName="LIBRERIAModel.Vista_ReseniaGeneral">
+              <MappingFragment StoreEntitySet="Vista_ReseniaGeneral">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="resenia" ColumnName="resenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

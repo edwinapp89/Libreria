@@ -1,8 +1,11 @@
-﻿@model IEnumerable<LibreriaBD.Vista_ReseniaGeneral>
+﻿@model IEnumerable<LibreriaBD.RESENIAS>
 
 @{
-    ViewBag.Title = "Resenia";
+    ViewBag.Title = "ReseniaAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 
 <link href="~/Content/EstiloResenia.css" rel="stylesheet" />
@@ -15,9 +18,10 @@
     <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4>Reseñas</h4>
+                <h4>Reseñas de todos los Libros</h4>
                 <hr />
                 <a href="@Url.Action("CrearResenia","Libreria")" class="btn btn-success btn-sm">Crear Reseña</a>
+                <a href="@Url.Action("Inicio","Libreria")" class="btn btn-warning btn-sm">Volver</a>
                 <hr />
             </div>
             <div class="panel-body">
@@ -35,15 +39,14 @@
                             <th>Calificación</th>
                             <th>Libro</th>
                             <th>Usuario</th>
-                            <th></th>
-                            <th></th>
+                      
 
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model != null && Model.Any())
                         {
-                            foreach (LibreriaBD.Vista_ReseniaGeneral item in Model)
+                            foreach (LibreriaBD.RESENIAS item in Model)
                             {
                                 <tr>
 
@@ -53,12 +56,8 @@
                                     <td>@item.calificacion</td>
                                     <td>@item.idLibro</td>
                                     <td>@item.idUsuario</td>
-                                    <td>
-                                        <a href="@Url.Action("EditarResenia", "Libreria", new { id = @item.id })" class="btn btn-success btn-sm">Editar</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class=" btn-delete btn btn-danger btn-sm " data-id="@item.id" data-dismiss="modal" data-toggle="modal"  data-target="#modal-confirm" >Eliminar</a>
-                                    </td>
+                                   
+                                   
 
 
                                 </tr>
@@ -88,7 +87,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="btn-confirm-delete" class="btn btn-danger btn-sm  btnEliminar">Si</button>
-                            <button type="button" id="btn-cancel-delete"  class="btn btn-secondary btn-sm btnEliminar" data-dismiss="modal">Cancelar</button>
+                            <button type="button" id="btn-cancel-delete" class="btn btn-secondary btn-sm btnEliminar" data-dismiss="modal">Cancelar</button>
                         </div>
 
                     </div>
@@ -96,7 +95,7 @@
 
             </div>
 
-        </div>      
+        </div>
 
     </div>
 </div>

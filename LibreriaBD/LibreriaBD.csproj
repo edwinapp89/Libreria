@@ -75,6 +75,9 @@
     <Compile Include="USUARIOS.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vista_ReseniaGeneral.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ModeloBD.edmx">

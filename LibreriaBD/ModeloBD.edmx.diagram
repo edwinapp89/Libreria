@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="LIBRERIAModel.USUARIOS" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="LIBRERIAModel.FK__RESENIAS__idLibr__571DF1D5" ManuallyRouted="false" />
         <AssociationConnector Association="LIBRERIAModel.FK__RESENIAS__idUsua__5812160E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LIBRERIAModel.Vista_ReseniaGeneral" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -30,6 +30,7 @@ namespace LibreriaBD
         public virtual DbSet<LIBROS> LIBROS { get; set; }
         public virtual DbSet<RESENIAS> RESENIAS { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
+        public virtual DbSet<Vista_ReseniaGeneral> Vista_ReseniaGeneral { get; set; }
     
         public virtual int sp_ActualizarResenia(Nullable<int> id, string resenia, string comentario, Nullable<int> calificacion, Nullable<int> idLibro, Nullable<int> idUsuario)
         {

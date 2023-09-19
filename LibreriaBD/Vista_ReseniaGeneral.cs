@@ -12,16 +12,13 @@ namespace LibreriaBD
     using System;
     using System.Collections.Generic;
     
-    public partial class RESENIAS
+    public partial class Vista_ReseniaGeneral
     {
-        public int id { get; set; }
         public string resenia { get; set; }
         public string comentario { get; set; }
         public int calificacion { get; set; }
         public int idLibro { get; set; }
         public int idUsuario { get; set; }
-    
-        public virtual LIBROS LIBROS { get; set; }
-        public virtual USUARIOS USUARIOS { get; set; }
+        public int id { get; set; }
     }
 }

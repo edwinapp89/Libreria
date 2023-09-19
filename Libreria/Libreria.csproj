@@ -314,6 +314,8 @@
     <Content Include="Views\Acceso\Login.cshtml" />
     <Content Include="Views\Acceso\Registrar.cshtml" />
     <Content Include="Views\Libreria\CrearResenia.cshtml" />
+    <Content Include="Views\Libreria\ReseniaAll.cshtml" />
+    <Content Include="Views\Libreria\CrearLibro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

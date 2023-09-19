@@ -42,5 +42,17 @@
     <FunctionImportMapping FunctionImportName="sp_Resenias" FunctionName="LIBRERIAModel.Store.sp_Resenias" />
     <FunctionImportMapping FunctionImportName="sp_Usuarios" FunctionName="LIBRERIAModel.Store.sp_Usuarios" />
     <FunctionImportMapping FunctionImportName="sp_ValidarUsuarios" FunctionName="LIBRERIAModel.Store.sp_ValidarUsuarios" />
+    <EntitySetMapping Name="Vista_ReseniaGeneral">
+      <EntityTypeMapping TypeName="LIBRERIAModel.Vista_ReseniaGeneral">
+        <MappingFragment StoreEntitySet="Vista_ReseniaGeneral">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="resenia" ColumnName="resenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
