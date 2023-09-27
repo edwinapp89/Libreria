@@ -19,9 +19,9 @@ namespace Libreria.Controllers
             List<LibreriaBD.LIBROS> ListaLibros;
             using (var ContextoBD = new LIBRERIAEntities())
             {
-                ListaLibros = ContextoBD.LIBROS.ToList();   
+                ListaLibros = ContextoBD.LIBROS.ToList();
             }
-                return View(ListaLibros);
+            return View(ListaLibros);
 
         }
 
@@ -38,7 +38,7 @@ namespace Libreria.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    contextoBD.sp_Libros(objLibro.titulo,objLibro.autor,objLibro.editorial,objLibro.categoria,objLibro.resumen);
+                    contextoBD.sp_Libros(objLibro.titulo, objLibro.autor, objLibro.editorial, objLibro.categoria, objLibro.resumen);
                     return RedirectToAction("Inicio", "Libreria");
                 }
             }
@@ -85,19 +85,33 @@ namespace Libreria.Controllers
             }
             return View();
         }
-       public ActionResult EditarResenia(int id)
+        public ActionResult EditarResenia(int id)
         {
+
             LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
+            //Se busca la resenia con el id recibido
             var resenia = ContextoBD.RESENIAS.FirstOrDefault(p => p.id == id);
-            if(resenia == null)
+            if (resenia == null)
             {
                 return View();
             }
+
+            //llamar metodos
+            var libros = obtenerLibrosEditar();
+            var usuarios = obtenerUsuariosEditar();
+
+            //Se usa un viewbag el cual es un contenedor que permite pasar datos desde el controladdor a la vista
+
+            //se pasan los datos a los dropdown list cono los resultados de libros y usuarios
+             ViewBag.Libros = new SelectList(libros, "Value", "Text");
+             ViewBag.Usuarios = new SelectList(usuarios, "Value", "Text");
+
+
             return View(resenia);
         }
 
         //los parametros no deben tener el mismo nombre del modelo
-        public ActionResult ActualizarResenia( LibreriaBD.RESENIAS objResenia)
+        public ActionResult ActualizarResenia(LibreriaBD.RESENIAS objResenia)
         {
             using (var contexto = new LIBRERIAEntities())
             {
@@ -108,7 +122,7 @@ namespace Libreria.Controllers
                         //actualizar con entityframework
                         contexto.Entry(objResenia).State = System.Data.Entity.EntityState.Modified;
                         contexto.SaveChanges();
-                        return RedirectToAction("Resenia", "Libreria");
+                        return RedirectToAction("ReseniaAll", "Libreria");
                     }
                     catch (Exception ex)
                     {
@@ -117,7 +131,7 @@ namespace Libreria.Controllers
                     }
                 }
             }
-           
+
             return View("EditarResenia", objResenia);
         }
 
@@ -138,10 +152,10 @@ namespace Libreria.Controllers
 
         }
         public ActionResult CerrarSesion()
-            {
-                Session["usuario"] = null;
-                return RedirectToAction("Login","Acceso");
-            }
+        {
+            Session["usuario"] = null;
+            return RedirectToAction("Login", "Acceso");
+        }
 
         public ActionResult obtenerLibros()
         {
@@ -161,6 +175,7 @@ namespace Libreria.Controllers
 
         public ActionResult obtenerUsuarios()
         {
+
             LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
             List<LibreriaBD.USUARIOS> ListaUsuarios;
             ListaUsuarios = ContextoBD.USUARIOS.ToList();
@@ -174,6 +189,33 @@ namespace Libreria.Controllers
             return Json(consulta, JsonRequestBehavior.AllowGet);
         }
 
+        public List<SelectListItem> obtenerLibrosEditar()
+        {
+            LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
+            //se referencia la tabla de la BD y se usa LINQ el cual selecciona y transforma cada fila de los datos de la tabla libros en un SelectListItem
+            var libros = ContextoBD.LIBROS.Select(l => new SelectListItem
+            {
+                //asigna el id de cada libro a la propiedad value
+                Value = l.id.ToString(),
+                //asigna el titulo de cada libro a la propiedad text
+                Text = l.titulo
+                //el to list convierte el linq en una lista de objetos de tipo selectlistitem
+            }).ToList();
 
+            return libros;
+        }
+
+
+        public List<SelectListItem> obtenerUsuariosEditar()
+        {
+            LIBRERIAEntities ContextoBD = new LIBRERIAEntities();
+            var usuarios = ContextoBD.USUARIOS.Select(u => new SelectListItem
+            {
+                Value = u.id.ToString(),
+                Text = u.nombreCompleto
+            }).ToList();
+
+            return usuarios;
+        }
     }
 }

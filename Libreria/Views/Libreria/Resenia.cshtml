@@ -56,7 +56,9 @@
                                     <td>@item.idLibro</td>
                                     <td>@item.idUsuario</td>
                                     <td>
-                                        <a href="@Url.Action("EditarResenia", "Libreria", new { id = @item.id })" class="btn btn-success btn-sm">Editar</a>
+                                       
+                                        <a href="@Url.Action("EditarResenia", "Libreria", new { id = @item.id })" class="btn btn-success btn-sm "  >Editar</a>
+
                                     </td>
                                     <td>
                                         <a href="#" class=" btn-delete btn btn-danger btn-sm " data-id="@item.id" data-dismiss="modal" data-toggle="modal"  data-target="#modal-confirm" >Eliminar</a>

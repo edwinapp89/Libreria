@@ -43,3 +43,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+$(".btnEditarResenia").click(function () {
+   
+    var idElemento = $(".btnEditarResenia");
+    var btnEdicion = $(this);
+
+    var url = btnEdicion.data('url');
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        data: { id: idElemento },
+        success: function (data) {
+            console.log(data);
+            //llenar los DDL
+            var ddlLibros = $("#idLibro");
+            if (data.Libros && data.Libros.length > 0) {
+                $.each(data.Libros, function (index, libro) {
+                    if (libro.id && libro.titulo) {
+                        ddlLibros.append($('<option></option>').attr('value', libro.id).text(libro.titulo));
+                    }
+                });
+            }
+            else {
+                ddlLibros.append($('<option></option>').text("No se encontraron libros disponibles"));
+            }
+
+            var ddlUsuarios = $("#idUsuario");
+
+
+            if (data.Usuarios && data.Usuarios.length > 0) {
+                $.each(data.Usuarios, function (index, usuario) {
+                    if (usuario.id && usuario.nombre) {
+                        ddlUsuarios.append($('<option></option>').attr('value', usuario.id).text(usuario.nombre));
+                    }
+                });
+            }
+            else {
+                ddlUsuarios.append($('<option></option>').text("No se encontraron libros disponibles"));
+            }
+           
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert('Error al obtener datos: ' + textStatus + ' - ' + errorThrown);
+        }
+    });
+});
